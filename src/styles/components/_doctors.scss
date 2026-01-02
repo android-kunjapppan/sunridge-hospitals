@@ -16,6 +16,10 @@ body.no-scroll {
     }
   }
 
+  &.section .section-title p {
+    color: #000000 !important;
+  }
+
   &__card {
     background: $bg-gray;
     border-radius: 1rem;
