@@ -1,0 +1,183 @@
+
+@use '../variables' as *;
+
+.hero {
+  position: relative;
+  /* ⬇️ Use a responsive clamp instead of full viewport height */
+  height: clamp(52vh, 62vh, 72vh);
+  width: 100%;
+  overflow: hidden;
+  background-color: #e5e7eb;
+
+  &__background {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ⬇️ Reduce zoom so it doesn’t feel “pushed in” */
+    transform: scale(1);
+    transition: transform 10s linear;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    /* ⬇️ Slightly lighter on desktop to avoid heavy feel */
+    background: linear-gradient(to right, rgba(76, 29, 149, 0.65), transparent);
+  }
+
+  &__content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    /* Safe padding so arrows never overlap */
+    padding-inline: 4.5rem;
+
+    @media (max-width: 1024px) {
+      padding-inline: 4rem;
+    }
+    @media (max-width: 768px) {
+      padding-inline: 3.25rem;
+    }
+    @media (max-width: 480px) {
+      padding-inline: 2.5rem; /* slightly tighter on very small phones */
+    }
+  }
+
+  &__text {
+    max-width: 32rem;
+    color: $white;
+    animation: fade-in-left 0.8s ease-out forwards;
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.25rem); /* ⬇️ a touch smaller headline */
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.9rem;
+    }
+
+    p {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      margin-bottom: 1.4rem;
+      color: #e5e7eb;
+    }
+
+    /* ⬇️ Remove large padding to avoid cramping small screens */
+    @media (max-width: 1280px) {
+      padding: 0;
+    }
+    @media (max-width: 480px) {
+      padding: 0;
+    }
+  }
+
+  &__highlight {
+    color: $accent-color;
+  }
+
+  &__cta {
+    border-radius: 999px;
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  &__dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 999px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1);
+    transition: background-color $transition-fast, transform $transition-fast;
+
+    &--active {
+      background-color: $white;
+      transform: scale(1.35);
+    }
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.18);
+    color: $white;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background-color $transition-fast, transform $transition-fast;
+
+    /* Desktop size */
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.35rem;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &--left {
+      left: 0.75rem;
+    }
+    &--right {
+      right: 0.75rem;
+    }
+
+    /* Smaller arrows on mobile */
+    @media (max-width: 768px) {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.2rem;
+    }
+    @media (max-width: 480px) {
+      width: 1.85rem;
+      height: 1.85rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  /* ⬇️ Mobile/tablet specific height & overlay tuning */
+  @media (max-width: 1024px) {
+    height: clamp(56vh, 60vh, 64vh);
+  }
+
+  @media (max-width: 768px) {
+    height: clamp(52vh, 56vh, 60vh);
+
+    &__overlay {
+      background: linear-gradient(to top, rgba(76, 29, 149, 0.78), transparent);
+    }
+  }
+
+  @media (max-width: 480px) {
+    height: clamp(50vh, 54vh, 58vh);
+
+    &__overlay {
+      background: linear-gradient(to top, rgba(76, 29, 149, 0.85), transparent);
+    }
+  }
+}
+
+/* (Optional) subtle keyframe you already had—kept intact */
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}

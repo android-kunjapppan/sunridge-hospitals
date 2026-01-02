@@ -1,0 +1,149 @@
+@use '../variables' as *;
+
+.ads {
+  /* ============================= */
+  /* SECTION TITLE */
+  /* ============================= */
+  .section-title p {
+    color: $muted-text !important;
+    opacity: 1;
+  }
+
+  /* ============================= */
+  /* CONTAINER */
+  /* ============================= */
+  .container {
+    max-width: $container-max-width;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    overflow: hidden;
+  }
+
+  /* ============================= */
+  /* GRID */
+  /* 3 → 2 → 1 columns */
+  /* ============================= */
+  &__grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-items: center;
+    align-items: start;
+  }
+
+  &__link {
+    display: contents;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* ============================= */
+  /* CARD */
+  /* ============================= */
+  &__card {
+    width: clamp(280px, 30vw, 340px);
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: $white;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: $shadow-soft;
+    transition: transform $transition-fast, box-shadow $transition-fast;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+    }
+  }
+
+  /* ============================= */
+  /* IMAGE AREA (FIXED ISSUE) */
+  /* ============================= */
+  &__image-area {
+    position: relative;
+    aspect-ratio: 4 / 3; /* 🔥 prevents collapse on mobile */
+    background: $bg-gray;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform $transition-normal;
+    }
+  }
+
+  &__card:hover &__image-area img {
+    transform: scale(1.06);
+  }
+
+  /* ============================= */
+  /* CAPTION */
+  /* ============================= */
+  &__caption {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text-color;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: $white;
+  }
+
+  /* ============================= */
+  /* TABLET */
+  /* ============================= */
+  @media (max-width: 1024px) {
+    &__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* ============================= */
+  /* MOBILE */
+  /* ============================= */
+  @media (max-width: 640px) {
+    &__grid {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    &__card {
+      width: 92%;
+      max-width: 420px;
+      aspect-ratio: auto;
+    }
+
+    &__caption {
+      min-height: 56px;
+    }
+  }
+}
+
+/* ============================= */
+/* GLOBAL SAFETY */
+/* ============================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

@@ -1,0 +1,58 @@
+
+@use '../variables' as *;
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1009;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  &__dialog {
+    position: relative;
+    z-index: 101;
+    width: min(720px, 94vw);
+    margin: 6vh auto;
+    border-radius: 1rem;
+    background: transparent; // the form card provides its own background
+  }
+
+  &__close {
+    position: absolute;
+    top: -0.75rem;
+    right: -0.75rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    color: $text-color;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
+    transition: background-color $transition-fast, transform $transition-fast;
+
+    &:hover { background: $white; transform: scale(1.05); }
+  }
+
+  &__content { padding: 0; } /* form has its own padding */
+}
+
+/* Slight tweaks when the appointment form is inside the modal */
+.appointment--modal {
+  .section-title { text-align: center; margin-bottom: 0.75rem; }
+  .appointment__card { border-radius: 1rem; padding: 1.5rem 1rem; }
+  .appointment__grid { gap: 1rem; }
+}
+
+
+
+.field-error { color: #ef4444; font-size: 0.85rem; margin-top: 0.35rem; display: block; }
+.form-status { margin-top: 0.75rem; }
+.form-status--ok { color: #10b981; }
+.form-status--error { color: #ef4444; }

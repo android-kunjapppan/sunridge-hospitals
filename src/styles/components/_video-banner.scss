@@ -1,0 +1,42 @@
+
+@use '../variables' as *;
+
+.video-banner {
+  .section-title p {
+    color: $muted-text !important;
+    opacity: 1;
+  }
+
+  .container {
+    max-width: $container-max-width;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  &__wrapper {
+    margin-top: 1rem;
+    display: grid;
+    place-items: center;
+  }
+
+  &__video {
+    width: 50%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    background: $bg-gray;
+    border-radius: 0.75rem;
+    box-shadow: $shadow-soft;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    overflow: hidden;
+
+    display: block;
+    height: auto;
+    object-fit: cover;
+  }
+  @media (max-width: 640px) {
+    &__video {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}

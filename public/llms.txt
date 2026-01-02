@@ -1,0 +1,36 @@
+# Sunridge Hospital
+> Leading multi-specialty hospital in Hyderabad providing comprehensive healthcare services
+
+## About
+Sunridge Hospitals is a patient-centric neighborhood hospital chain delivering tertiary-level standards of care in a warm, community-first environment. We offer advanced medical facilities with expert doctors across multiple specialties.
+
+## Medical Specialties
+- Cardiology
+- Neurology
+- Orthopaedics
+- Gastroenterology
+- Hepatology
+- Pulmonology
+- Urology
+- Gynaecology
+- ENT (Ear, Nose, Throat)
+- Internal Medicine & Diabetology
+
+## Services
+- 24/7 Emergency Care
+- Advanced Diagnostic Services
+- In-patient Care
+- Out-patient Consultations
+- Surgical Procedures
+- Critical Care Unit
+- Laboratory Services
+- Radiology & Imaging
+
+## Contact Information
+- **Phone**: +91 9652766690
+- **Email**: sunridgehospital@gmail.com
+- **Address**: K/21, 8-3-167, Kalyan Nagar Phase 3 Rd, Phase-3, Pramila Enclave, Kalyan Nagar, Moti Nagar, Hyderabad, Telangana 500114, India
+- **Hours**: Open 24/7
+
+## Website
+https://www.sunridgehospitals.com

@@ -1,0 +1,188 @@
+
+@use '../variables' as *;
+
+.testimonials {
+  .section-title p {
+    color: $muted-text !important;
+    opacity: 1;
+  }
+
+  .container {
+    max-width: $container-max-width;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  /* ============================= */
+  /* (Optional) STATIC GRID — keep if you use elsewhere */
+  /* ============================= */
+  &__grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-items: center;
+    align-items: start;
+    overflow: hidden;
+  }
+
+  /* ============================= */
+  /* CARD (used by both grid and marquee) */
+  /* ============================= */
+  &__card {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: $white;
+    box-shadow: $shadow-soft;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+
+    /* === Entrance animation (first render) === */
+    opacity: 0;
+    transform: translateY(24px);
+    animation: testimonial-fade-up 0.6s ease forwards;
+  }
+
+  /* Stagger animation (first few in view) */
+  &__card:nth-child(1) { animation-delay: 0.05s; }
+  &__card:nth-child(2) { animation-delay: 0.12s; }
+  &__card:nth-child(3) { animation-delay: 0.18s; }
+  &__card:nth-child(4) { animation-delay: 0.24s; }
+  &__card:nth-child(5) { animation-delay: 0.3s; }
+
+  /* ============================= */
+  /* IMAGE AREA */
+  /* ============================= */
+  &__image-area {
+    position: relative;
+    height: 72%;
+    background: $bg-gray;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform $transition-normal;
+      display: block; /* prevent inline gap */
+    }
+  }
+  &__card:hover &__image-area img { transform: scale(1.06); }
+
+  /* ============================= */
+  /* CAPTION AREA (kept for balanced padding, can be empty) */
+  /* ============================= */
+  &__caption {
+    height: 28%;
+    padding: 0.6rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $white;
+  }
+
+  /* ============================= */
+  /* MARQUEE VIEWPORT */
+  /* ============================= */
+  &__marquee {
+    position: relative;
+    overflow: hidden;      /* clip moving track */
+    margin-top: 1.25rem;
+    background: $bg-light;
+    border-radius: 1rem;
+    box-shadow: $shadow-soft;
+    user-select: none;
+  }
+
+  /* ============================= */
+  /* MARQUEE TRACK (duplicates items once) */
+  /* ============================= */
+  &__track {
+    display: inline-flex;
+    gap: 1rem;
+    white-space: nowrap;
+    padding-inline: 0.75rem;
+    will-change: transform;
+
+    /* Fixed-ish card width for seamless loop; same card style as grid */
+    .testimonials__card {
+      max-width: none;                   /* track controls width */
+      width: clamp(240px, 26vw, 320px);  /* keep consistent widths across items */
+      flex: 0 0 auto;
+    }
+
+    /* 🎬 The actual loop animation */
+    animation: testimonials-marquee 28s linear infinite;
+  }
+
+  /* Move track left by HALF because content is duplicated once (A + A) */
+  @keyframes testimonials-marquee {
+    0%   { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Pause on hover (desktop): helpful to inspect images */
+  &__marquee:hover &__track { animation-play-state: paused; }
+
+  /* ============================= */
+  /* RESPONSIVE */
+  /* ============================= */
+  @media (max-width: 1024px) {
+    &__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    &__grid {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+    &__card {
+      max-width: 420px;
+      width: 92%;
+    }
+
+    /* Marquee track: slightly bigger cards on phones (more readable) */
+    &__track {
+      gap: 0.75rem;
+      .testimonials__card { width: clamp(220px, 70vw, 320px); }
+    }
+  }
+}
+
+/* ============================= */
+/* KEYFRAMES (entrance) */
+/* ============================= */
+@keyframes testimonial-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================= */
+/* ACCESSIBILITY */
+/* ============================= */
+@media (prefers-reduced-motion: reduce) {
+  .testimonials__card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .testimonials__track {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* ============================= */
+/* GLOBAL RESETS */
+/* ============================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+img { display: block; max-width: 100%; }

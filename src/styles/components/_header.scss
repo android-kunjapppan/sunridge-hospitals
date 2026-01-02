@@ -1,0 +1,268 @@
+
+@use '../variables' as *;
+
+/* ============================= */
+/* Header: fixed, subtle scrolled state */
+/* ============================= */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: rgba($white, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06);
+  transition:
+    box-shadow $transition-normal,
+    background-color $transition-normal;
+
+  &--scrolled {
+    background-color: rgba($white, 0.98);
+    box-shadow: 0 6px 24px rgba(15, 23, 42, 0.12);
+  }
+}
+
+/* Prevent content from sliding under the fixed header */
+main {
+  padding-top: 5rem;
+  @media (max-width: 480px) { padding-top: 4.25rem; }
+}
+
+/* ============================= */
+/* NAV BAR */
+/* ============================= */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 5rem;
+  justify-content: flex-start;   /* do not push items off-screen on mobile */
+  flex-wrap: nowrap;
+
+  /* Use responsive horizontal padding instead of fixed 2.5rem */
+  padding-inline: clamp(0.75rem, 3vw, 1rem);
+
+  @media (max-width: 480px) { height: 4.25rem; }
+
+  /* ---------- BRAND ---------- */
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: $primary-color;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    img,
+    .nav__logo {
+      height: 2.6rem;
+      width: 2.6rem;
+      border-radius: 999px;
+      object-fit: cover;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
+
+      @media (max-width: 380px) {
+        height: 2.1rem;
+        width: 2.1rem;
+      }
+    }
+
+    span {
+      @media (max-width: 420px) {
+        display: none; /* save space on very small phones */
+      }
+    }
+  }
+
+  /* ---------- DESKTOP LINKS ---------- */
+  &__links {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: flex;
+      margin-left: auto;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+
+      a {
+        color: #374151;
+        position: relative;
+        transition: color $transition-fast;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -0.25rem;
+          width: 0;
+          height: 2px;
+          background: linear-gradient(90deg, $primary-color, $accent-color);
+          transition: width $transition-normal;
+        }
+
+        &:hover {
+          color: $primary-color;
+          &::after { width: 100%; }
+        }
+      }
+    }
+  }
+
+  /* ---------- PHONE PILL (desktop; hidden on mobile by default) ---------- */
+  &__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.8rem !important;
+    height: 2rem;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+
+    /* cap width so it doesn't push hamburger off-screen */
+    max-width: calc(100vw - 8rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 0 1 auto;
+
+    &-icon {
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      line-height: 1;
+          @media (max-width: 960px) {
+      font-size: 0.6rem !important;
+    }
+    }
+
+    @media (max-width: 960px) {
+      font-size: 0.6rem !important;
+    }
+
+    @media (max-width: 767px) {
+      display: none !important; /* hide on mobile (enable if desired) */
+    }
+
+    @media (max-width: 420px) {
+      height: 1.9rem; font-size: 0.75rem; padding: 0.3rem 0.5rem;
+      max-width: calc(100vw - 7.25rem);
+    }
+    @media (max-width: 360px) {
+      height: 1.8rem; font-size: 0.72rem; padding: 0.28rem 0.45rem;
+      max-width: calc(100vw - 7rem);
+    }
+  }
+
+  /* ---------- HAMBURGER ---------- */
+  &__menu-btn {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-left: auto;       /* keep visible at right edge */
+    padding: 0;
+
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    flex-shrink: 0;          /* never shrink off-screen */
+
+    span {
+      height: 2px;
+      width: 1.25rem;
+      background-color: #374151;
+      border-radius: 999px;
+
+      @media (max-width: 420px) { width: 1.15rem; }
+      @media (max-width: 360px) { width: 1.05rem; }
+    }
+
+    @media (max-width: 420px) { width: 2.1rem; height: 2.1rem; }
+    @media (max-width: 360px) { width: 2rem;   height: 2rem;   }
+
+    @media (min-width: 768px) { display: none; } /* hide on desktop */
+  }
+}
+
+/* ============================= */
+/* MOBILE DROPDOWN (collapsible under header) */
+/* ============================= */
+.nav__dropdown {
+  position: fixed;
+  top: 5rem;                 /* below header (match desktop header height) */
+  left: 0;
+  right: 0;
+  z-index: 49;               /* under header but above content */
+
+  max-height: 0;
+  overflow: hidden;
+  background: rgba($white, 0.98);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.15);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+  transition:
+    max-height $transition-normal,
+    padding $transition-fast;
+
+  /* hidden on desktop */
+  @media (min-width: 768px) { display: none; }
+
+  &--open {
+    max-height: 60vh;          /* enough to show all links */
+    padding-block: 0.5rem;
+  }
+
+  .nav__dropdown-inner {
+    display: grid;
+    gap: 0.5rem;
+    padding-inline: clamp(0.75rem, 3vw, 1rem);
+    position: relative;
+
+    a {
+      display: block;
+      padding: 0.6rem 0.5rem;
+      font-weight: 600;
+      color: $text-color;
+      border-radius: 0.5rem;
+      transition: background-color $transition-fast;
+
+      &:hover { background: rgba(15, 23, 42, 0.06); }
+    }
+
+    .nav__dropdown-call {
+      margin-top: 0.25rem;
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 999px;
+      background: $primary-color;
+      color: $white;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .nav__dropdown-close {
+      position: absolute;
+      top: 0.25rem;
+      right: 0.25rem;
+      border: none;
+      background: rgba(15, 23, 42, 0.08);
+      color: $text-color;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      cursor: pointer;
+
+      &:hover { background: rgba(15, 23, 42, 0.15); }
+    }
+  }
+}

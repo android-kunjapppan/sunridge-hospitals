@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.sunridgehospitals.com/sitemap.xml
+
+# Crawl-delay for good measure
+Crawl-delay: 1

@@ -1,0 +1,24 @@
+{
+  "name": "sunridge-hospital",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "firebase": "^12.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.11.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "sass": "^1.80.0",
+    "vite": "^6.0.0",
+    "vite-imagetools": "^9.0.2",
+    "vite-plugin-compression": "^0.5.1"
+  }
+}

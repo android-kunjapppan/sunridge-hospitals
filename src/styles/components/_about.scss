@@ -1,0 +1,37 @@
+
+@use '../variables' as *;
+
+.about {
+  .about__content {
+    max-width: 920px;
+    margin: 0 auto;
+
+    h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: $text-color;
+    }
+
+    p {
+      line-height: 1.6;
+      color: $muted-text;
+    }
+
+    .about__mission {
+      margin: 0.5rem 0 1rem;
+      padding-left: 1.25rem;
+
+      li {
+        margin: 0.35rem 0;
+        color: $text-color;
+      }
+    }
+
+    .about__cta {
+      display: flex;
+      flex-direction: row;
+      gap: 0.75rem;
+      margin-top: 7rem;
+    }
+  }
+}
