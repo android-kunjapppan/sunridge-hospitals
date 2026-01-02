@@ -1,4 +1,5 @@
 import React from "react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import EmailLink from "./EmailLink";
 
 const Footer = () => {
@@ -55,17 +56,29 @@ const Footer = () => {
 					<div className="footer__column">
 						<h3>Follow Us</h3>
 						<div className="footer__social">
-							<a href="https://www.facebook.com/sunridgehospitals" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-								f
+							<a
+								href="https://www.facebook.com/SunridgeHospitals"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Facebook"
+							>
+								<Facebook size={18} strokeWidth={2} />
 							</a>
-							<a href="https://twitter.com/sunridgecare" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-								t
+							<a
+								href="https://www.instagram.com/sunridge_hospital"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Instagram"
+							>
+								<Instagram size={18} strokeWidth={2} />
 							</a>
-							<a href="https://www.instagram.com/sunridgehospitals" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-								in
-							</a>
-							<a href="https://www.linkedin.com/company/sunridge-hospitals" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-								ln
+							<a
+								href="https://www.linkedin.com/company/sunridge-hospital/"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="LinkedIn"
+							>
+								<Linkedin size={18} strokeWidth={2} />
 							</a>
 						</div>
 					</div>

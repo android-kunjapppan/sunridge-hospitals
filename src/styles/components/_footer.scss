@@ -62,7 +62,6 @@
       place-items: center;
       background-color: rgba(15, 23, 42, 0.3);
       font-size: 0.9rem;
-      text-transform: uppercase;
       transition: background-color $transition-fast, transform $transition-fast;
 
       &:hover {
