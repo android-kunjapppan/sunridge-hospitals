@@ -11,16 +11,14 @@ const VideoBanner = () => {
         </div>
 
         <div className="video-banner__wrapper reveal">
-          <video
+          <iframe
             className="video-banner__video"
-            src='/images/sunridge-demo-video-1.mp4'
-            controls
-            playsInline
-            preload="metadata"
-            poster="/images/infrastructure-gallery-1.jpeg"
-          >
-            Sorry, your browser doesn’t support HTML5 video.
-          </video>
+            src="https://www.youtube.com/embed/VRIRc_AM-n0"
+            title="Sunridge Hospital Video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
     </section>

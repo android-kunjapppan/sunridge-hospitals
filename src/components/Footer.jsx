@@ -55,16 +55,16 @@ const Footer = () => {
 					<div className="footer__column">
 						<h3>Follow Us</h3>
 						<div className="footer__social">
-							<a href="#" aria-label="Facebook">
+							<a href="https://www.facebook.com/sunridgehospitals" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
 								f
 							</a>
-							<a href="#" aria-label="Twitter">
+							<a href="https://twitter.com/sunridgecare" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
 								t
 							</a>
-							<a href="#" aria-label="Instagram">
+							<a href="https://www.instagram.com/sunridgehospitals" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
 								in
 							</a>
-							<a href="#" aria-label="LinkedIn">
+							<a href="https://www.linkedin.com/company/sunridge-hospitals" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
 								ln
 							</a>
 						</div>
