@@ -87,6 +87,7 @@ const AppointmentFormModalContent = () => {
     doctor: '',
     date: '',
   })
+  const [touched, setTouched] = useState({})
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState({ sending: false, ok: null, message: '' })
 
@@ -109,8 +110,6 @@ const AppointmentFormModalContent = () => {
       next.phone = 'Please enter at least 10 digits; +, spaces and dashes allowed.'
 
     if (!draft.hospital) next.hospital = 'Please select a hospital.'
-    if (!draft.speciality) next.speciality = 'Please select a speciality.'
-    if (!draft.doctor) next.doctor = 'Please select a doctor.'
     if (!draft.date) next.date = 'Please choose a date.'
     return next
   }
@@ -118,13 +117,16 @@ const AppointmentFormModalContent = () => {
   const setField = (key, value) => {
     const draft = { ...form, [key]: value }
     setForm(draft)
-    if (key === 'fullName' || key === 'email') {
-      setErrors((prev) => ({ ...prev, ...validate(draft) }))
-    }
+    setTouched((prev) => ({ ...prev, [key]: true }))
+    setErrors(validate(draft))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    // Mark all as touched on submit attempt
+    const allTouched = Object.keys(form).reduce((acc, key) => ({ ...acc, [key]: true }), {})
+    setTouched(allTouched)
+
     const nextErrors = validate()
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) {
@@ -198,6 +200,7 @@ const AppointmentFormModalContent = () => {
         doctor: '',
         date: '',
       })
+      setTouched({})
     } catch (err) {
       console.error(err)
       setStatus({
@@ -228,7 +231,7 @@ const AppointmentFormModalContent = () => {
                 onChange={(e) => setField('fullName', e.target.value)}
                 required
               />
-              {errors.fullName && <small className="field-error">{errors.fullName}</small>}
+              {touched.fullName && errors.fullName && <small className="field-error">{errors.fullName}</small>}
             </div>
             <div className="appointment__field">
               <input
@@ -242,7 +245,7 @@ const AppointmentFormModalContent = () => {
                 pattern="[0-9+\-\s()]{10,}"
                 title="Please enter at least 10 digits; you may include +, spaces, and dashes."
               />
-              {errors.phone && <small className="field-error">{errors.phone}</small>}
+              {touched.phone && errors.phone && <small className="field-error">{errors.phone}</small>}
             </div>
           </div>
 
@@ -258,7 +261,7 @@ const AppointmentFormModalContent = () => {
                 onChange={(e) => setField('email', e.target.value)}
                 required
               />
-              {errors.email && <small className="field-error">{errors.email}</small>}
+              {touched.email && errors.email && <small className="field-error">{errors.email}</small>}
             </div>
             <div className="appointment__field">
               <select
@@ -271,10 +274,9 @@ const AppointmentFormModalContent = () => {
                 <option value="" disabled>
                   Select Hospital
                 </option>
-                <option>Sunridge Main Campus</option>
-                <option>Sunridge City Center</option>
+                <option>Sunridge Moti Nagar</option>
               </select>
-              {errors.hospital && <small className="field-error">{errors.hospital}</small>}
+              {touched.hospital && errors.hospital && <small className="field-error">{errors.hospital}</small>}
             </div>
           </div>
 
@@ -291,13 +293,14 @@ const AppointmentFormModalContent = () => {
                 <option value="" disabled>
                   Select Speciality
                 </option>
+                <option value="Not Sure">I am not sure / General</option>
                 {specialities.map((s) => (
                   <option key={s} value={s}>
                     {s}
                   </option>
                 ))}
               </select>
-              {errors.speciality && <small className="field-error">{errors.speciality}</small>}
+              {touched.speciality && errors.speciality && <small className="field-error">{errors.speciality}</small>}
             </div>
             <div className="appointment__field">
               <select
@@ -310,13 +313,14 @@ const AppointmentFormModalContent = () => {
                 <option value="" disabled>
                   Select Doctor
                 </option>
+                <option value="Not Sure">Assigned by Hospital</option>
                 {doctors.map((d) => (
                   <option key={d.name} value={d.name}>
                     {d.name}
                   </option>
                 ))}
               </select>
-              {errors.doctor && <small className="field-error">{errors.doctor}</small>}
+              {touched.doctor && errors.doctor && <small className="field-error">{errors.doctor}</small>}
             </div>
           </div>
 
@@ -332,7 +336,7 @@ const AppointmentFormModalContent = () => {
               onChange={(e) => setField('date', e.target.value)}
               required
             />
-            {errors.date && <small className="field-error">{errors.date}</small>}
+            {touched.date && errors.date && <small className="field-error">{errors.date}</small>}
           </div>
 
           {/* Submit */}

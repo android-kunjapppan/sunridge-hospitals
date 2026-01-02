@@ -50,8 +50,7 @@ const AppointmentForm = () => {
                   <option value="" disabled>
                     Select Hospital
                   </option>
-                  <option>Sunridge Main Campus</option>
-                  <option>Sunridge City Center</option>
+                  <option>Sunridge Moti Nagar</option>
                 </select>
               </div>
             </div>
@@ -62,6 +61,7 @@ const AppointmentForm = () => {
                   <option value="" disabled>
                     Select Speciality
                   </option>
+                  <option>I am not sure / General</option>
                   <option>Cardiology</option>
                   <option>Neurology</option>
                   <option>Orthopedics</option>
@@ -73,6 +73,7 @@ const AppointmentForm = () => {
                   <option value="" disabled>
                     Select Doctor
                   </option>
+                  <option>Assigned by Hospital</option>
                   <option>Dr. Emily Johnson</option>
                   <option>Dr. Michael Chen</option>
                   <option>Dr. Sarah Patel</option>
