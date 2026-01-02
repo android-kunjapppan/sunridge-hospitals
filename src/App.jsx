@@ -18,6 +18,7 @@ import Testimonials from "./components/Testimonials";
 import VideoBanner from "./components/VideoBanner";
 import AdvertisingStrip from "./components/AdvertisingStrip";
 import InsurancePartners from "./components/InsurancePartners";
+import MapSection from "./components/MapSection";
 import Modal from "./components/ModalComponent";
 import AppointmentFormModalContent from "./components/AppointmentFormModalContent";
 
@@ -73,6 +74,7 @@ const HomePage = ({ openAppointment }) => (
 		<AdvertisingStrip />
 		<VideoBanner />
 		<InsurancePartners />
+		<MapSection />
 		<EmergencyContact />
 	</>
 );
