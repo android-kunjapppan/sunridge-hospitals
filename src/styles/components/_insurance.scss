@@ -4,7 +4,11 @@
   .partners-grid-container {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2.5rem;
+
+    @media (min-width: 768px) {
+      gap: 4rem;
+    }
   }
 
   &.section .section-title p {

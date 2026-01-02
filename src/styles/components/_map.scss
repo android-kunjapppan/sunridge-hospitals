@@ -1,7 +1,11 @@
 @use '../variables' as *;
 
 .map-section {
-  padding-block: 5rem;
+  padding-block: 3.5rem;
+
+  @media (min-width: 768px) {
+    padding-block: 5rem;
+  }
   background-color: $bg-light;
 
   .map-container {
@@ -60,8 +64,6 @@
 
 @media (max-width: 768px) {
   .map-section {
-    padding-block: 3rem;
-
     .map-container {
       iframe {
         height: 350px;
