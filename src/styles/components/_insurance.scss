@@ -1,0 +1,93 @@
+@use '../variables' as *;
+
+.insurance-partners {
+  .partners-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  &.section .section-title p {
+    color: #000000 !important;
+  }
+
+  .partners-category {
+    h3 {
+      font-size: 1.5rem;
+      color: $primary-color;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: $accent-color;
+        margin: 0.75rem auto 0;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .partner-card {
+    background: $white;
+    padding: 2rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: $shadow-soft;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: transform $transition-fast, box-shadow $transition-fast;
+    border: 1px solid rgba($primary-color, 0.05);
+    height: 100%;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(107, 33, 168, 0.15);
+      border-color: rgba($primary-color, 0.2);
+    }
+
+    .partner-name {
+      font-weight: 600;
+      color: $text-color;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .insurance-partners {
+    .partners-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .insurance-partners {
+    .partners-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .partner-card {
+      padding: 1.25rem 1rem;
+      
+      .partner-name {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}

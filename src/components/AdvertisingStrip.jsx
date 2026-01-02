@@ -2,8 +2,8 @@
 import React from 'react'
 
 const ads = [
-  { id: 1, title: 'Cardiac Care Campaign',    src: '/images/infrastructure-gallery-1.jpeg', href: '/campaigns/cardiac-care' },
-  { id: 2, title: 'Diabetes Awareness',       src: '/images/infrastructure-gallery-2.jpeg', href: '/campaigns/diabetes-awareness' },
+  { id: 1, title: 'Multi speciality Hospital',    src: '/images/infrastructure-gallery-1.jpeg', href: '/campaigns/cardiac-care' },
+  { id: 2, title: 'XRay and Laboratory',       src: '/images/infrastructure-gallery-2.jpeg', href: '/campaigns/diabetes-awareness' },
   { id: 3, title: 'Emergency Services 24x7',  src: '/images/infrastructure-gallery-3.jpeg', href: '/services/emergency' },
   { id: 4, title: 'Preventive Health Packages', src: '/images/infrastructure-gallery-4.jpeg', href: '/packages/preventive-health' },
   { id: 5, title: 'Neighborhood Trust',       src: '/images/infrastructure-gallery-5.jpeg', href: '/campaigns/neighborhood-trust' },
