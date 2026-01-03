@@ -21,6 +21,7 @@ import InsurancePartners from "./components/InsurancePartners";
 import MapSection from "./components/MapSection";
 import Modal from "./components/ModalComponent";
 import AppointmentFormModalContent from "./components/AppointmentFormModalContent";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function ScrollRevealInit() {
 	const location = useLocation();
@@ -119,6 +120,7 @@ export default function App() {
 					</Routes>
 				</main>
 				<Footer />
+				<WhatsAppButton />
 				<Modal
 					isOpen={isAppointmentOpen}
 					onClose={closeAppointment}
