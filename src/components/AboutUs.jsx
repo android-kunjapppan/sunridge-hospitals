@@ -74,10 +74,10 @@ const AboutUs = ({ onBookAppointment }) => {
           </ul>
 
           <div className="about__cta">
-            <a href="/appointment" className="btn btn--accent" onClick={onBookAppointment}>
+            <button className="btn btn--accent" onClick={onBookAppointment}>
               Book an Appointment
-            </a>
-            <a href="/contact" className="btn btn--primary">
+            </button>
+            <a href="/#location" className="btn btn--primary">
               Contact Us
             </a>
           </div>

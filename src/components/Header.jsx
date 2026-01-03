@@ -63,10 +63,10 @@ const Header = () => {
         {/* Desktop links */}
         <div className="nav__links" aria-label="Primary">
           <Link to="/about">About Us</Link>
-          <Link to="/hospitals">Our Hospitals</Link>
-          <Link to="/specialities">Our Specialities</Link>
-          <Link to="/doctors">Our Doctors</Link>
-          <Link to="/contact">Contact Us</Link>
+          <a href="/#location">Our Hospitals</a>
+          <a href="/#specialties">Our Specialities</a>
+          <a href="/#doctors">Our Doctors</a>
+          <a href="/#location">Contact Us</a>
         </div>
 
         {/* Desktop phone pill (hidden on mobile via SCSS) */}
@@ -100,10 +100,10 @@ const Header = () => {
       >
         <div className="container nav__dropdown-inner">
           <Link to="/about" onClick={closeMenu}>About Us</Link>
-          <Link to="/hospitals" onClick={closeMenu}>Our Hospitals</Link>
-          <Link to="/specialities" onClick={closeMenu}>Our Specialities</Link>
-          <Link to="/doctors" onClick={closeMenu}>Our Doctors</Link>
-          <Link to="/contact" onClick={closeMenu}>Contact Us</Link>
+          <a href="/#location" onClick={closeMenu}>Our Hospitals</a>
+          <a href="/#specialties" onClick={closeMenu}>Our Specialities</a>
+          <a href="/#doctors" onClick={closeMenu}>Our Doctors</a>
+          <a href="/#location" onClick={closeMenu}>Contact Us</a>
 
           <a className="nav__dropdown-call" href="tel:+919652766690" onClick={closeMenu}>
             📞 Call +91 9652766690

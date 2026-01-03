@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 import EmailLink from "./EmailLink";
 
@@ -21,16 +22,16 @@ const Footer = () => {
 						<h3>Quick Links</h3>
 						<ul>
 							<li>
-								<a href="/about">About Us</a>
+								<Link to="/about">About Us</Link>
 							</li>
 							<li>
-								<a href="/services">Our Services</a>
+								<a href="/#specialties">Our Services</a>
 							</li>
 							<li>
-								<a href="/doctors">Our Doctors</a>
+								<a href="/#doctors">Our Doctors</a>
 							</li>
 							<li>
-								<a href="/contact">Contact Us</a>
+								<a href="/#location">Contact Us</a>
 							</li>
 						</ul>
 					</div>

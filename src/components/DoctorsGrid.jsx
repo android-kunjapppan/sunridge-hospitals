@@ -1,74 +1,6 @@
 // src/components/DoctorsGrid.jsx
 import React, { useState, useEffect } from 'react'
-
-const doctors = [
-  {
-    id: 1,
-    name: 'Dr. P. Shirish Kumar',
-    degrees: 'MBBS, MD (General Medicine)',
-    title: 'Consultant General Physician & Internal Medicine Specialist',
-    specialty: 'General Medicine',
-    expertise: ['Diabetes','Hypertension','Infectious Diseases','Critical Care','Lifestyle Disorders'],
-    experienceYears: 12,
-    image: '/images/shirish.jpg',
-    link: '/doctors/dr-p-shirish-kumar',
-    bio: 'Dr. Shirish Kumar brings over 12 years of experience in providing evidence-based and patient-focused medical care.',
-  },
-  {
-    id: 2,
-    name: 'Dr. Vamshi Krishna Ejjagiri',
-    degrees: 'M.S. Orthopaedics',
-    title: 'Trauma & Joint Replacement Surgeon',
-    specialty: 'Orthopaedics',
-    expertise: ['Trauma Surgery','Joint Replacement','Arthroplasty','Fracture Management'],
-    experienceYears: 10,
-    image: '/images/vamsi-krishna.png',
-    link: '/doctors/dr-vamshi-krishna-ejjagiri',
-    bio: 'Trauma and Joint Replacement Surgeon focusing on personalized orthopaedic care.',
-  },
-  {
-    id: 3,
-    name: 'Dr. Shaik Siddiq',
-    degrees: 'MBBS, MD (Pulmonary Medicine)',
-    title: 'Consultant & Interventional Pulmonologist',
-    specialty: 'Pulmonology',
-    expertise: ['Bronchoscopy','Asthma','COPD','Sleep Medicine','Respiratory Infections'],
-    experienceYears: 0,
-    image: '/images/shaik-siddiq.jpeg',
-    link: '/doctors/dr-shaik-siddiq',
-    bio: 'Consultant pulmonologist with expertise in airway and respiratory care.',
-  },
-  {
-    id: 4,
-    name: 'Dr. D. Suresh Babu',
-    degrees: 'MBBS, DNB, FIAGES, FALS',
-    title: 'Consultant General, Laparoscopic & Laser Surgeon',
-    specialty: 'General Surgery',
-    expertise: [
-      'Laser Proctology',
-      'Varicose Veins',
-      'Laparoscopic Surgery',
-      'Hernia Repair',
-      'Emergency Care',
-    ],
-    experienceYears: 0,
-    image: '/images/suresh.jpg',
-    link: '/doctors/dr-d-suresh-babu',
-    bio: 'Expert in minimally invasive and laser surgical procedures.',
-  },
-  {
-    id: 5,
-    name: 'Dr. Vamsidhar Reddy V',
-    degrees: 'MD, DM (Gastroenterology), FAGE',
-    title: 'Senior Consultant – Gastroenterology & Hepatology',
-    specialty: 'Gastroenterology',
-    expertise: ['ERCP','EUS','Therapeutic Endoscopy','Hepatology'],
-    experienceYears: 0,
-    image: '/images/vamsidhar.webp',
-    link: '/doctors/gastro-specialist',
-    bio: 'Senior consultant specializing in advanced endoscopic procedures.',
-  },
-]
+import { doctors } from '../data/doctors'
 
 const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
   const [selected, setSelected] = useState(null)
@@ -87,7 +19,7 @@ const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
   }, [selected])
 
   return (
-    <section className="section section--white doctors">
+    <section className="section section--white doctors" id="doctors">
       <div className="container">
         <div className="section-title">
           <h2>Our Expert Doctors</h2>

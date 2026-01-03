@@ -2,11 +2,11 @@
 import React from 'react'
 
 const ads = [
-  { id: 1, title: 'Multi speciality Hospital',    src: '/images/infrastructure-gallery-1.jpeg', href: '/campaigns/cardiac-care' },
-  { id: 2, title: 'XRay and Laboratory',       src: '/images/infrastructure-gallery-2.jpeg', href: '/campaigns/diabetes-awareness' },
-  { id: 3, title: 'Emergency Services 24x7',  src: '/images/infrastructure-gallery-3.jpeg', href: '/services/emergency' },
-  { id: 4, title: 'Preventive Health Packages', src: '/images/infrastructure-gallery-4.jpeg', href: '/packages/preventive-health' },
-  { id: 5, title: 'Neighborhood Trust',       src: '/images/infrastructure-gallery-5.jpeg', href: '/campaigns/neighborhood-trust' },
+  { id: 1, title: 'Multi speciality Hospital',    src: '/images/infrastructure-gallery-1.jpeg' },
+  { id: 2, title: 'XRay and Laboratory',       src: '/images/infrastructure-gallery-2.jpeg' },
+  { id: 3, title: 'Emergency Services 24x7',  src: '/images/infrastructure-gallery-3.jpeg' },
+  { id: 4, title: 'Preventive Health Packages', src: '/images/infrastructure-gallery-4.jpeg' },
+  { id: 5, title: 'Neighborhood Trust',       src: '/images/infrastructure-gallery-5.jpeg' },
 ]
 
 const AdvertisingStrip = () => {
@@ -20,30 +20,14 @@ const AdvertisingStrip = () => {
 
         {/* Grid: 3 / 2 / 1 columns with fixed-size tiles */}
         <div className="ads__grid reveal" aria-label="Advertising and partners">
-          {ads.map((ad) => {
-            const Card = (
-              <figure className="ads__card" key={ad.id}>
-                <div className="ads__image-area">
-                  <img src={ad.src} alt={ad.title} loading="lazy" />
-                </div>
-                <figcaption className="ads__caption">{ad.title}</figcaption>
-              </figure>
-            )
-
-            return ad.href ? (
-              <a
-                key={`${ad.id}-link`}
-                href={ad.href}
-                className="ads__link"
-                aria-label={`Open ${ad.title}`}
-                title={ad.title}
-              >
-                {Card}
-              </a>
-            ) : (
-              Card
-            )
-          })}
+          {ads.map((ad) => (
+            <figure className="ads__card" key={ad.id}>
+              <div className="ads__image-area">
+                <img src={ad.src} alt={ad.title} loading="lazy" />
+              </div>
+              <figcaption className="ads__caption">{ad.title}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>

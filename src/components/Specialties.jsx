@@ -15,7 +15,7 @@ const looped = [...specialties, ...specialties]
 
 const Specialties = () => {
   return (
-    <section className="section section--light specialties">
+    <section className="section section--light specialties" id="specialties">
       <div className="container">
         <div className="section-title reveal">
           <h2>Our Specialties</h2>

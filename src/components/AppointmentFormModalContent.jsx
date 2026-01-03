@@ -1,6 +1,7 @@
 
 // src/components/AppointmentFormModalContent.jsx
 import React, { useMemo, useState } from 'react'
+import { doctors } from '../data/doctors'
 
 // --- Firebase init (inline, using your credentials) ---
 import { initializeApp } from 'firebase/app'
@@ -46,29 +47,6 @@ const db = getFirestore(app)
 const AppointmentFormModalContent = () => {
   const COMPANY_NAME = 'Sunridge Hospital'
 
-  const doctors = useMemo(
-    () => [
-      { name: 'Dr. P. Shirish Kumar', specialty: 'General Medicine' },
-      { name: 'Dr. Vamshi Krishna Ejjagiri', specialty: 'Orthopaedics' },
-      { name: 'Dr. SHAIK SIDDIQ', specialty: 'Pulmonology' },
-      { name: 'Dr. D. Suresh Babu', specialty: 'General Surgery' },
-      { name: 'Senior Gastroenterology Specialist', specialty: 'Gastroenterology' },
-    ],
-    []
-  )
-
-  const specialities = useMemo(
-    () => [
-      'General Medicine',
-      'Orthopaedics',
-      'Pulmonology',
-      'General Surgery',
-      'Gastroenterology',
-      'Cardiology',
-      'Neurology',
-    ],
-    []
-  )
 
   const today = useMemo(() => {
     const d = new Date()
@@ -83,8 +61,8 @@ const AppointmentFormModalContent = () => {
     phone: '',
     email: '',
     hospital: '',
-    speciality: '',
     doctor: '',
+    speciality: '',
     date: '',
   })
   const [touched, setTouched] = useState({})
@@ -115,7 +93,13 @@ const AppointmentFormModalContent = () => {
   }
 
   const setField = (key, value) => {
-    const draft = { ...form, [key]: value }
+    let draft = { ...form, [key]: value }
+
+    if (key === 'doctor') {
+      const selectedDoc = doctors.find((d) => d.name === value)
+      draft.speciality = selectedDoc ? selectedDoc.specialty : ''
+    }
+
     setForm(draft)
     setTouched((prev) => ({ ...prev, [key]: true }))
     setErrors(validate(draft))
@@ -196,8 +180,8 @@ const AppointmentFormModalContent = () => {
         phone: '',
         email: '',
         hospital: '',
-        speciality: '',
         doctor: '',
+        speciality: '',
         date: '',
       })
       setTouched({})
@@ -280,29 +264,9 @@ const AppointmentFormModalContent = () => {
             </div>
           </div>
 
-          {/* Speciality + Doctor */}
+          {/* Doctor */}
           <div className="appointment__grid">
-            <div className="appointment__field">
-              <select
-                name="speciality"
-                value={form.speciality}
-                onChange={(e) => setField('speciality', e.target.value)}
-                aria-label="Select Speciality"
-                required
-              >
-                <option value="" disabled>
-                  Select Speciality
-                </option>
-                <option value="Not Sure">I am not sure / General</option>
-                {specialities.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-              {touched.speciality && errors.speciality && <small className="field-error">{errors.speciality}</small>}
-            </div>
-            <div className="appointment__field">
+            <div className="appointment__field appointment__field--full">
               <select
                 name="doctor"
                 value={form.doctor}
@@ -322,9 +286,7 @@ const AppointmentFormModalContent = () => {
               </select>
               {touched.doctor && errors.doctor && <small className="field-error">{errors.doctor}</small>}
             </div>
-          </div>
-
-          {/* Date */}
+            {/* Date */}
           <div className="appointment__date">
             <input
               type="date"
@@ -338,6 +300,9 @@ const AppointmentFormModalContent = () => {
             />
             {touched.date && errors.date && <small className="field-error">{errors.date}</small>}
           </div>
+          </div>
+
+          
 
           {/* Submit */}
           <div className="appointment__submit">
