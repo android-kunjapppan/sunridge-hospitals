@@ -43,13 +43,6 @@ const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
                 <h3>{doctor.name}</h3>
                 <p className="doctors__subtitle">{doctor.title}</p>
                 <p className="doctors__specialty">{doctor.specialty}</p>
-                <a
-                  href={doctor.link}
-                  className="doctors__link"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  View Profile
-                </a>
               </div>
             </article>
           ))}

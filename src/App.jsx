@@ -22,6 +22,8 @@ import MapSection from "./components/MapSection";
 import Modal from "./components/ModalComponent";
 import AppointmentFormModalContent from "./components/AppointmentFormModalContent";
 import WhatsAppButton from "./components/WhatsAppButton";
+import ThankYou from "./pages/ThankYou";
+
 
 function ScrollRevealInit() {
 	const location = useLocation();
@@ -76,7 +78,7 @@ const HomePage = ({ openAppointment }) => (
 		<VideoBanner />
 		<InsurancePartners />
 		<MapSection />
-		<EmergencyContact />
+		<EmergencyContact onBookAppointment={openAppointment} />
 	</>
 );
 
@@ -112,6 +114,12 @@ export default function App() {
 						/>
 						{/* add other pages as needed */}
 						<Route
+							path="/thank-you"
+							element={
+								<ThankYou />
+							}
+						/>
+						<Route
 							path="*"
 							element={
 								<HomePage openAppointment={openAppointment} />
@@ -125,9 +133,10 @@ export default function App() {
 					isOpen={isAppointmentOpen}
 					onClose={closeAppointment}
 					ariaLabel="Book Appointment"
-				>
-					<AppointmentFormModalContent />
+					>
+					<AppointmentFormModalContent onClose={closeAppointment} />
 				</Modal>
+
 			</div>
 		</Router>
 	);
