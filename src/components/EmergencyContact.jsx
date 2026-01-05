@@ -1,13 +1,13 @@
 import React from "react";
 
-const EmergencyContact = () => {
+const EmergencyContact = ({ onBookAppointment }) => {
 	return (
 		<section className="section section--purple emergency">
 			<div className="container">
 				<div className="section-title reveal">
-					<h2>Emergency Contact</h2>
+					<h2>Contact</h2>
 					<p>
-						We'yre here for you 24/7. In case of emergency, don't
+						We're here for you 24/7. In case of emergency, don't
 						hesitate to contact us immediately.
 					</p>
 				</div>
@@ -58,9 +58,13 @@ const EmergencyContact = () => {
 				</div>
 
 				<div className="emergency__cta reveal">
-					<button className="btn btn--accent">
-						Contact Emergency Services
+					<button
+						className="btn btn--accent"
+						onClick={onBookAppointment}
+						>
+						Contact
 					</button>
+
 				</div>
 			</div>
 		</section>

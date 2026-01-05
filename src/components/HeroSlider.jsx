@@ -27,7 +27,7 @@ const slides = [
   },
   {
     id: 4,
-    title: 'comprehensive',
+    title: 'Comprehensive',
     highlight: 'DIAGNOSTICS',
     subtitle: 'Accurate results with modern equipment',
     image:

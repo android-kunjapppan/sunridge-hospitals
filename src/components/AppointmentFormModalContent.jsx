@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 
 // src/components/AppointmentFormModalContent.jsx
 import React, { useMemo, useState } from 'react'
@@ -44,8 +45,9 @@ try {
 const db = getFirestore(app)
 
 // --- Component ---
-const AppointmentFormModalContent = () => {
+const AppointmentFormModalContent = ({ onClose }) => {
   const COMPANY_NAME = 'Sunridge Hospital'
+  const navigate = useNavigate();
 
 
   const today = useMemo(() => {
@@ -119,6 +121,7 @@ const AppointmentFormModalContent = () => {
     }
 
     try {
+
       setStatus({ sending: true, ok: null, message: 'Saving your request…' })
 
       // Normalize email for consistent matching
@@ -184,7 +187,10 @@ const AppointmentFormModalContent = () => {
         speciality: '',
         date: '',
       })
-      setTouched({})
+      setTouched({});
+      onClose();
+      navigate("/thank-you");
+
     } catch (err) {
       console.error(err)
       setStatus({
