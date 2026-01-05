@@ -86,9 +86,6 @@ const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
             </div>
 
             <div className="doctors-modal__actions">
-              <a href={selected.link} className="btn btn--primary">
-                View Full Profile
-              </a>
               <button
                 className="btn btn--accent"
                 onClick={() => onBookAppointment()}
