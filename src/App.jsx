@@ -90,7 +90,11 @@ const AboutPage = ({ openAppointment }) => (
 
 export default function App() {
 	const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
-	const openAppointment = () => setIsAppointmentOpen(true);
+	const [selectedDoctor, setSelectedDoctor] = useState('');
+	const openAppointment = (doctorName = '') => {
+		setSelectedDoctor(doctorName);
+		setIsAppointmentOpen(true);
+	};
 	const closeAppointment = () => setIsAppointmentOpen(false);
 
 	return (
@@ -134,7 +138,10 @@ export default function App() {
 					onClose={closeAppointment}
 					ariaLabel="Book Appointment"
 					>
-					<AppointmentFormModalContent onClose={closeAppointment} />
+					<AppointmentFormModalContent
+						onClose={closeAppointment}
+						selectedDoctor={selectedDoctor}
+					/>
 				</Modal>
 
 			</div>
