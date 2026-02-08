@@ -88,7 +88,7 @@ const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
             <div className="doctors-modal__actions">
               <button
                 className="btn btn--accent"
-                onClick={() => onBookAppointment()}
+                onClick={() => onBookAppointment(selected.name)}
               >
                 Book Appointment
               </button>
