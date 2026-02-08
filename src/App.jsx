@@ -72,8 +72,10 @@ function PageTracker() {
 
 	useEffect(() => {
 		if (window.gtag) {
-			window.gtag('config', 'AW-11379742425', {
+			window.gtag('event', 'page_view', {
 				page_path: location.pathname,
+				page_location: window.location.href,
+				send_to: 'AW-11379742425'
 			});
 		}
 	}, [location.pathname]);
