@@ -67,6 +67,20 @@ function ScrollRevealInit() {
 	return null;
 }
 
+function PageTracker() {
+	const location = useLocation();
+
+	useEffect(() => {
+		if (window.gtag) {
+			window.gtag('config', 'AW-11379742425', {
+				page_path: location.pathname,
+			});
+		}
+	}, [location.pathname]);
+
+	return null;
+}
+
 const HomePage = ({ openAppointment }) => (
 	<>
 		<HeroSlider onBookAppointment={openAppointment} />
@@ -100,6 +114,7 @@ export default function App() {
 	return (
 		<Router>
 			<ScrollRevealInit />
+			<PageTracker />
 			<div className="app">
 				<Header />
 				<main>
