@@ -43,6 +43,7 @@ const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
                 <h3>{doctor.name}</h3>
                 <p className="doctors__subtitle">{doctor.title}</p>
                 <p className="doctors__specialty">{doctor.specialty}</p>
+                <p className="doctors__availability">Available: {doctor.availability}</p>
               </div>
             </article>
           ))}
@@ -72,6 +73,9 @@ const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
                 {selected.experienceYears > 0 && (
                   <p>{selected.experienceYears}+ years experience</p>
                 )}
+                <p className="doctors-modal__availability">
+                  Available: {selected.availability}
+                </p>
               </div>
             </div>
 
