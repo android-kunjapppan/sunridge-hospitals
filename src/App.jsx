@@ -23,7 +23,11 @@ import Modal from "./components/ModalComponent";
 import AppointmentFormModalContent from "./components/AppointmentFormModalContent";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ThankYou from "./pages/ThankYou";
-
+import InternalMedicine from "./pages/specialties/InternalMedicine";
+import Gastroenterology from "./pages/specialties/Gastroenterology";
+import Orthopedics from "./pages/specialties/Orthopedics";
+import Pulmonology from "./pages/specialties/Pulmonology";
+import GeneralSurgery from "./pages/specialties/GeneralSurgery";
 
 function ScrollRevealInit() {
 	const location = useLocation();
@@ -140,6 +144,11 @@ export default function App() {
 								<ThankYou />
 							}
 						/>
+						<Route path="/specialties/internal-medicine" element={<InternalMedicine openAppointment={openAppointment} />} />
+						<Route path="/specialties/gastroenterology" element={<Gastroenterology openAppointment={openAppointment} />} />
+						<Route path="/specialties/orthopedics" element={<Orthopedics openAppointment={openAppointment} />} />
+						<Route path="/specialties/pulmonology" element={<Pulmonology openAppointment={openAppointment} />} />
+						<Route path="/specialties/general-surgery" element={<GeneralSurgery openAppointment={openAppointment} />} />
 						<Route
 							path="*"
 							element={

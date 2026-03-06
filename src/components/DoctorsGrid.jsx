@@ -2,8 +2,12 @@
 import React, { useState, useEffect } from 'react'
 import { doctors } from '../data/doctors'
 
-const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
+const DoctorsGrid = ({ onBookAppointment = () => {}, specialty = null }) => {
   const [selected, setSelected] = useState(null)
+
+  const filteredDoctors = specialty
+    ? doctors.filter((d) => d.specialty === specialty)
+    : doctors
 
   // ESC closes modal
   useEffect(() => {
@@ -27,7 +31,7 @@ const DoctorsGrid = ({ onBookAppointment = () => {} }) => {
         </div>
 
         <div className="doctors__grid">
-          {doctors.map((doctor) => (
+          {filteredDoctors.map((doctor) => (
             <article
               key={doctor.id}
               className="doctors__card"

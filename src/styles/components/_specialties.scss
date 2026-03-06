@@ -117,3 +117,52 @@
     }
   }
 }
+
+/* Core specialty navigation */
+
+.specialties__main-nav {
+  margin-top: 3rem;
+}
+
+.specialties__main-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.specialties__main-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.05rem;
+
+  padding: 1.25rem 1rem;
+
+  border-radius: 0.75rem;
+  text-decoration: none;
+
+  background: linear-gradient(135deg, #4c1d95, #7c3aed);
+  color: white;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.specialties__main-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
