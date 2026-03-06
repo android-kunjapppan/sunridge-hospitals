@@ -85,6 +85,7 @@ const Specialties = () => {
                 className="specialties__main-card"
               >
                 <span className="specialties__main-title">{s.title}</span>
+                <span className="specialties__main-badge">View dept</span>
                 <span className="specialties__main-arrow">→</span>
               </Link>
             ))}
