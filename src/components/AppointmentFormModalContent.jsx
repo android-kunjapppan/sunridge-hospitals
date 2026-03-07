@@ -53,9 +53,24 @@ const AppointmentFormModalContent = ({ onClose, selectedDoctor = '' }) => {
   const [touched, setTouched] = useState({})
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState({ sending: false, ok: null, message: '' })
+  const [captchaText, setCaptchaText] = useState('')
+  const [captchaInput, setCaptchaInput] = useState('')
 
   const nameRegex = /^[A-Za-z][A-Za-z\s'.-]{2,}$/
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+  const generateCaptcha = () => {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let result = "";
+    for (let i = 0; i < 5; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setCaptchaText(result);
+  };
+
+  React.useEffect(() => {
+    generateCaptcha();
+  }, []);
 
   const validate = (draft = form) => {
     const next = {}
@@ -93,7 +108,6 @@ const AppointmentFormModalContent = ({ onClose, selectedDoctor = '' }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // mark all fields touched (keeps your red errors working)
     const allTouched = Object.keys(form).reduce(
       (acc, key) => ({ ...acc, [key]: true }),
       {}
@@ -103,6 +117,16 @@ const AppointmentFormModalContent = ({ onClose, selectedDoctor = '' }) => {
     const nextErrors = validate()
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
+
+    if (captchaInput !== captchaText) {
+      setStatus({
+        sending: false,
+        ok: false,
+        message: "Incorrect captcha. Please try again."
+      });
+      generateCaptcha();
+      return;
+    }
 
     try {
       setStatus({ sending: true, ok: null, message: 'Saving your request…' })
@@ -207,16 +231,14 @@ const AppointmentFormModalContent = ({ onClose, selectedDoctor = '' }) => {
                 aria-label="Select Hospital"
                 required
               >
-                <option value="" disabled>
-                  Select Hospital
-                </option>
+                <option value="" disabled>Select Hospital</option>
                 <option>Sunridge Moti Nagar</option>
               </select>
               {touched.hospital && errors.hospital && <small className="field-error">{errors.hospital}</small>}
             </div>
           </div>
 
-          {/* Doctor */}
+          {/* Doctor + Date */}
           <div className="appointment__grid">
             <div className="appointment__field appointment__field--full">
               <select
@@ -226,35 +248,54 @@ const AppointmentFormModalContent = ({ onClose, selectedDoctor = '' }) => {
                 aria-label="Select Doctor"
                 required
               >
-                <option value="" disabled>
-                  Select Doctor
-                </option>
+                <option value="" disabled>Select Doctor</option>
                 <option value="Not Sure">Assigned by Hospital</option>
                 {doctors.map((d) => (
-                  <option key={d.name} value={d.name}>
-                    {d.name}
-                  </option>
+                  <option key={d.name} value={d.name}>{d.name}</option>
                 ))}
               </select>
               {touched.doctor && errors.doctor && <small className="field-error">{errors.doctor}</small>}
             </div>
-            {/* Date */}
-          <div className="appointment__date">
-            <input
-              type="date"
-              name="date"
-              placeholder="Select Date"
-              aria-label="Appointment Date"
-              min={today}
-              value={form.date}
-              onChange={(e) => setField('date', e.target.value)}
-              required
-            />
-            {touched.date && errors.date && <small className="field-error">{errors.date}</small>}
-          </div>
+
+            {/* Date — placeholder shown when empty */}
+            <div className="appointment__date">
+              <input
+                type="date"
+                name="date"
+                aria-label="Appointment Date"
+                min={today}
+                value={form.date}
+                onChange={(e) => setField('date', e.target.value)}
+                required
+              />
+              {!form.date && (
+                <span className="appointment__date-placeholder">Pick a date</span>
+              )}
+            </div>
           </div>
 
-          
+          {/* Captcha */}
+          <div className="appointment__captcha">
+            <div className="captcha-box">{captchaText}</div>
+
+            <input
+              className="captcha-input"
+              type="text"
+              placeholder="Enter the text above"
+              value={captchaInput}
+              onChange={(e) => setCaptchaInput(e.target.value.toUpperCase())}
+              required
+            />
+
+            <button
+              type="button"
+              className="captcha-refresh"
+              onClick={generateCaptcha}
+              aria-label="Refresh captcha"
+            >
+              ↻
+            </button>
+          </div>
 
           {/* Submit */}
           <div className="appointment__submit">
