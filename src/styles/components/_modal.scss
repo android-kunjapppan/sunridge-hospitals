@@ -6,6 +6,8 @@
   inset: 0;
   z-index: 1009;
 
+  overflow-y: auto;
+
   &__backdrop {
     position: absolute;
     inset: 0;
